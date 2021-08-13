@@ -1,0 +1,26 @@
+{%extends 'master.html'%}
+{% block 'title' %}Add Category{%  endblock %}
+{% block 'body' %}
+
+{% include 'sidebar.html' %}
+    
+<div class="col-md-8">
+    <form action="{% url 'addcategory' %}"  method="POST" >
+        {% csrf_token %}
+        {{form.as_p}}
+
+    <button type="submit" class="btn btn-primary">Add category</button>
+    </form>
+    <hr>
+</div>  
+<div class="col-md-4"></div>
+    <div class="col-md-8">
+        {% for cat in allcategories %}
+        <h4>{{ cat.title }} </h4>
+        <hr>
+     
+    
+        {%endfor%}
+      </div>
+                
+{%endblock%}

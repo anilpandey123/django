@@ -1,0 +1,44 @@
+{%extends 'master.html'%}
+{% block 'title' %}TO DO{%  endblock %}
+{%block 'body' %}
+
+    {% include 'sidebar.html' %}
+        
+        <div class="col-md-8">
+            <form action="{% url 'todo' %}"  method="POST" >
+                {% csrf_token %}
+                {{form.as_p}}
+
+            <button type="submit" class="btn btn-primary">TODO</button>
+            </form>
+
+        </div>
+
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+     <table class=" table table-hover">
+       <tr>
+        <th>title</th>
+        <th>description</th>
+        <th>date added</th>
+        <th>complete</th>
+        <th>important</th>
+        <th>Action</th>
+       </tr>
+      {% for i in todo_out%}
+      <tr><td>{{i.title}}</td>
+        <td>{{i.description}}</td>
+        <td>{{i.date_added}}</td>
+        <td>{{i.complete}}</td>
+        <td>{{i.important}}</td>
+        <td><a href="{% url 'edit' i.id %}"> <button class="btn btn-small btn-warning" id="edit{{i.pk}}">edit</button></a>
+       <a href="{% url 'delete' i.id %}"> <button class="btn btn-small btn-danger" id="delete{{i.pk}}">delete</button></a></td>
+      </tr>
+     
+     {%endfor%}
+     </table>
+      </div>
+    
+        
+{%endblock%}

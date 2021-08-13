@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>{% block 'title' %}  Document   {%  endblock %}</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'home' %}">Home</a></li>
+      <li ><a href="{% url 'about' %}">About</a></li>
+      <li><a href="{% url 'contact' %}">contact us</a></li>
+      <li><a href="{% url 'allproduct'%}">category </a></li>
+      <li><a href="">View Cart</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+      <li><a href="{% url 'signout' %}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+      {% else %}
+            <li><a href="{% url 'signin' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+
+{% block 'body' %}  {% endblock %}
+</body>
+
+</html>

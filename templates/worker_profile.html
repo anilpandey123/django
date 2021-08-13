@@ -1,0 +1,42 @@
+{%extends 'master.html'%}
+{% block 'title' %}Product sales{%  endblock %}
+{%block 'body' %}
+
+    {% include 'sidebar.html' %}
+        
+        <div class="col-md-8">
+            <form action="{% url 'worker_profile' %}"  method="POST" >
+                {% csrf_token %}
+                {{form.as_p}}
+
+            <button type="submit" class="btn btn-primary">Add Details</button>
+            </form>
+
+        </div>
+        <hr>
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+         <table class=" table table-hover">
+           <tr>
+            <th>Worker Name</th>
+            <th>Product Name</th>
+            <th>Total amount</th>
+            <th>Advance amount</th>
+            <th>remark</th>
+            <th>quantity</th>
+           </tr>
+          {% for i in worker_list %}
+          <tr><td>{{i.worker_name}}</td>
+            <td>{{i.product_name}}</td>
+            <td>{{i.totalamount}}</td>
+            <td>{{i.advance_amount}}</td>
+            <td>{{i.remarks}}</td>
+            <td>{{i.quantity}}</td>
+           
+          </tr>
+         
+         {%endfor%}
+         </table>
+          </div>
+        
+{%endblock%}

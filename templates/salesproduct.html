@@ -1,0 +1,18 @@
+{%extends 'master.html'%}
+{% block 'title' %}Product sales{%  endblock %}
+{%block 'body' %}
+
+    {% include 'sidebar.html' %}
+        
+        <div class="col-md-8">
+            <form action="{% url 'salesproduct' %}"  method="POST" >
+                {% csrf_token %}
+                {{form.as_p}}
+
+            <button type="submit">Sales Product</button>
+            </form>
+
+        </div>
+    
+        
+{%endblock%}

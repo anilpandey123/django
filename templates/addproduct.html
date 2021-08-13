@@ -1,0 +1,68 @@
+{%extends 'master.html'%}
+{% block 'title' %}Add Product{%  endblock %}
+{%block 'body' %}
+
+    {% include 'sidebar.html' %}
+        
+        <div class="col-md-8">
+            <form action="{% url 'addproduct' %}"  method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+
+            <button type="submit">Add Product</button>
+            </form>
+
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md 6 mx-auto">
+                    <form action="" method="GET">
+                        <input type="text" name="keyword" placeholder="search product here">
+                        <button class="btn btn-success">Search Product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-md-8">
+        <table class="table table-hover">
+            <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Image</th>
+                <th>marked price</th>
+                <th>Selling price</th>
+                <th>Description</th>
+                <th>source</th>
+                <th>Quantity</th>
+                <th>Quantity_IN</th>
+                <th>Action</th>
+            </tr>
+            {% for p in productlist %}
+            <tr>
+               <td> <a href="{% url 'salesproduct' %}">
+                   {{p.title}}</td></a>
+               <td>{{p.category}}</td>
+               <td><img src="{{p.image.url}}" height="50"></td>
+               <td>{{p.marked_price}}</td>
+               <td>{{p.selling_price}}</td>
+               <td>{{p.description}}</td>
+               <td>{{p.source}}</td>
+               <td>{{p.quantity}}</td>
+               <td>{{p.quantity_in}}</td>
+               <td><a href=""> <button class="btn btn-small btn-warning" >edit</button></a>
+                <a href=""> <button class="btn btn-small btn-danger">delete</button></a></td>
+            </tr>
+            {%endfor%}
+        </table>
+     
+    
+        
+      </div>
+
+
+        
+{%endblock%}
